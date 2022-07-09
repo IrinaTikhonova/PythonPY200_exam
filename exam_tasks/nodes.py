@@ -67,6 +67,8 @@ class DoubleLinkedNode(Node):
         self.is_valid(prev_)
         self._prev = prev_
 
+    # todo is_valid либо перегрузить либо переписать в родителе
+
 
 if __name__ == "__main__":
     dln = DoubleLinkedNode(5)

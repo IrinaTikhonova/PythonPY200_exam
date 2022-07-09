@@ -1,11 +1,12 @@
 from typing import Optional, Any, Iterable
+from collections.abc import MutableSequence
 
 from exam_tasks.nodes import Node
 
-from collections.abc import MutableSequence
-
 
 class LinkedList(MutableSequence):
+    class_node = Node  # todo можно уйти от деталей к абстракциям
+
     def __init__(self, data: Iterable = None):
         """Инициализация односвязного списка"""
         self._len = 0
@@ -36,8 +37,7 @@ class LinkedList(MutableSequence):
         if not 0 <= index < self.len:
             raise IndexError()
 
-        else:
-            return True
+        return True
 
     def step_by_step_on_nodes(self, index: int):
         """ Функция выполняет перемещение по узлам до указанного индекса. И возвращает узел. """
@@ -156,7 +156,7 @@ class LinkedList(MutableSequence):
     def extend(self, list_):
         """ Метод для добавления в связный список сразу нескольких элементов """
 
-        for i in range(0, len(list_)):
+        for i in range(0, len(list_)):  # fixme for value in list_: ...
             self.append(list_[i])
 
     def pop(self, index=None):
@@ -164,11 +164,10 @@ class LinkedList(MutableSequence):
         Если индекс не указан, удаляется последний элемент с конца """
 
         if index is None:
-            deleted = self.__getitem__(self.len - 1)
-            self.__delitem__(self.len - 1)
-        else:
-            deleted = self.__getitem__(index)
-            self.__delitem__(index)
+            index = self.len - 1
+
+        deleted = self[index]
+        del self[index]
 
         return deleted
 

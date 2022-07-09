@@ -1,11 +1,11 @@
 from typing import Optional, Any
 
 from exam_tasks.nodes import DoubleLinkedNode
-
 from exam_tasks.linked_list import LinkedList
 
 
 class DoubleLinkedList(LinkedList):
+    # todo перегрузить атрибут класса
 
     def append(self, value: Any):
         """ Добавление элемента в конец двусвязного списка. """
